@@ -1,0 +1,3 @@
+services:
+	- Eshop\Router\RouterFactory::createRouter
+

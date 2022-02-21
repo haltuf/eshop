@@ -1,0 +1,5 @@
+#config/local.neon
+.env
+vendor/
+.idea/
+composer.lock

@@ -1,0 +1,48 @@
+{
+	"name": "haltuf/web-project-docker",
+	"description": "Nette: Standard Web Project in Docker",
+	"keywords": ["nette", "docker"],
+	"type": "project",
+	"license": ["MIT", "BSD-3-Clause", "GPL-2.0", "GPL-3.0"],
+	"require": {
+		"php": ">= 7.2",
+		"nette/application": "^3.1",
+		"nette/bootstrap": "^3.1",
+		"nette/caching": "^3.1",
+		"nette/database": "^3.1",
+		"nette/di": "^3.0",
+		"nette/finder": "^2.5",
+		"nette/forms": "^3.1",
+		"nette/http": "^3.1",
+		"nette/mail": "^3.1",
+		"nette/robot-loader": "^3.3",
+		"nette/security": "^3.1",
+		"nette/utils": "^3.2",
+		"latte/latte": "^2.9",
+		"tracy/tracy": "^2.8",
+		"contributte/console": "^0.9.1",
+		"nettrine/annotations": "^0.7.0",
+		"nettrine/cache": "^0.3.0",
+		"nettrine/migrations": "^0.8.0",
+		"nettrine/fixtures": "^0.6.1",
+		"nettrine/dbal": "^0.7.0",
+		"nettrine/orm": "^0.8.3"
+	},
+	"require-dev": {
+		"symfony/thanks": "^1",
+		"nette/tester": "^2.4"
+	},
+	"autoload": {
+		"psr-4": {
+			"Eshop\\": "app",
+			"Eshop\\Tests\\": "tests",
+			"Eshop\\Console\\": "bin/console"
+		}
+	},
+	"minimum-stability": "stable",
+	"config": {
+		"allow-plugins": {
+			"symfony/thanks": true
+		}
+	}
+}

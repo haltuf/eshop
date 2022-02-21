@@ -1,0 +1,18 @@
+parameters:
+
+
+database:
+	dsn: 'mysql:host=database;dbname=test'
+	user: test
+	password: test
+
+nettrine.dbal:
+  debug:
+    panel: %debugMode%
+    sourcePaths: [%appDir%/Model/ORM/Entity]
+  connection:
+    host: database
+    driver: pdo_mysql
+    dbname: test
+    user: test
+    password: test
