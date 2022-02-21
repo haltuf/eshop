@@ -1,3 +1,8 @@
 services:
 	- Eshop\Router\RouterFactory::createRouter
 
+	# ORM Services
+	- Eshop\Model\ORM\Services\UserService
+
+	# commands
+	- Eshop\Console\CreateUserCommand
