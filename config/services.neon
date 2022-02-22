@@ -1,4 +1,6 @@
 services:
+	security.passwords: Nette\Security\Passwords(::PASSWORD_BCRYPT, [cost: 12])
+	authorizator: Eshop\Model\Security\AuthorizatorFactory::create
 	- Eshop\Router\RouterFactory::createRouter
 
 	# ORM Services
