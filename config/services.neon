@@ -5,6 +5,7 @@ services:
 
 	# ORM Services
 	- Eshop\Model\ORM\Services\UserService
+	- Eshop\Model\ORM\Services\ProductService
 
 	# commands
 	- Eshop\Console\CreateUserCommand

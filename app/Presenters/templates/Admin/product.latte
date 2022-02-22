@@ -1,0 +1,138 @@
+{block content}
+<div class="container-fluid p-6">
+	<div class="row">
+		<div class="col-lg-12 col-md-12 col-12">
+			<!-- Page header -->
+
+			<div class="border-bottom pb-4 mb-4">
+				<h3 class="mb-0 fw-bold">General</h3>
+
+			</div>
+
+		</div>
+	</div>
+	<div class="row mb-8">
+		<div class="col-xl-3 col-lg-4 col-md-12 col-12">
+			<div class="mb-4 mb-lg-0">
+				<h4 class="mb-1">General Setting</h4>
+				<p class="mb-0 fs-5 text-muted">Profile configuration settings </p>
+			</div>
+
+		</div>
+
+		<div class="col-xl-9 col-lg-8 col-md-12 col-12">
+			<!-- card -->
+			<div class="card">
+				<!-- card body -->
+				<div class="card-body">
+					<div class=" mb-6">
+						<h4 class="mb-1">General Settings</h4>
+
+					</div>
+					<div>
+						<!-- border -->
+						<div class="mb-6">
+							<h4 class="mb-1">Basic information</h4>
+						</div>
+						{form productForm}
+							<div class="mb-3 row">
+								{label name, class => "col-sm-4 col-form-label form-label"}
+								<div class="col-md-8 col-12">
+									{input name, class => "form-control"}
+								</div>
+							</div>
+							<div class="mb-3 row">
+								{label EAN, class => "col-sm-4 col-form-label form-label"}
+								<div class="col-md-8 col-12">
+									{input EAN, class => "form-control"}
+								</div>
+							</div>
+							<div class="mb-3 row">
+								{label HSCode, class => "col-sm-4 col-form-label form-label"}
+								<div class="col-md-8 col-12">
+									{input HSCode, class => "form-control"}
+								</div>
+							</div>
+							<div class="mb-3 row">
+								{label category, class => "col-sm-4 col-form-label form-label"}
+								<div class="col-md-8 col-12">
+									{input category, class => "form-select"}
+								</div>
+							</div>
+							<div class="mb-3 row">
+								{label price, class => "col-sm-4 col-form-label form-label"}
+								<div class="col-md-4 col-6">
+									{input price, class => "form-control"}
+								</div>
+								<div class="col-md-4 col-6">
+									{input vatType, class => "form-select"}
+								</div>
+							</div>
+							{*<!-- row -->
+							<div class="mb-3 row">
+								<label for="phone" class="col-sm-4 col-form-label
+							  form-label">Phone <span class="text-muted">(Optional)</span></label>
+								<div class="col-md-8 col-12">
+									<input type="text" class="form-control" placeholder="Phone" id="phone" required>
+								</div>
+							</div>
+							<!-- row -->
+							<div class="mb-3 row">
+								<label for="location" class="col-sm-4 col-form-label
+							  form-label">Location</label>
+
+								<div class="col-md-8 col-12">
+									<select class="form-select" id="location">
+										<option selected>Select Country</option>
+										<option value="1">India</option>
+										<option value="2">UK</option>
+										<option value="3">USA</option>
+									</select>
+								</div>
+							</div>
+							<!-- row -->
+							<div class="mb-3 row">
+								<label for="addressLine" class="col-sm-4 col-form-label
+							  form-label">Address line 1</label>
+
+
+								<div class="col-md-8 col-12">
+									<input type="text" class="form-control" placeholder="placeholder" id="addressLine" required>
+								</div>
+							</div>
+							<!-- row -->
+							<div class="mb-3 row">
+								<label for="addressLineTwo" class="col-sm-4
+							  col-form-label form-label">Address line 2</label>
+								<div class="col-md-8 col-12">
+									<input type="text" class="form-control" placeholder="placeholder" id="addressLineTwo" required>
+								</div>
+							</div>
+							<!-- row -->
+							<div class="row align-items-center">
+								<label for="zipcode" class="col-sm-4 col-form-label
+							  form-label">Zip code <i data-feather="info"
+													  class="me-2 icon-xs"></i></label>
+
+								<div class="col-md-8 col-12">
+									<input type="text" class="form-control" placeholder="placeholder" id="zipcode" required>
+								</div>
+								<div class="offset-md-4 col-md-8 mt-4">
+									<button type="submit" class="btn btn-primary"> Save
+										Changes</button>
+								</div>
+							</div>*}
+							<div class="row align-items-center">
+								<div class="offset-md-4 col-md-8 mt-4">
+									{input send, class => "btn btn-primary"}
+								</div>
+							</div>
+						{/form}
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+</div>

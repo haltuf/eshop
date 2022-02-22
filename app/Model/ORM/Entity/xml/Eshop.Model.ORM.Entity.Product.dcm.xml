@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
-    <entity name="Eshop\Model\ORM\Entity\User">
+    <entity name="Eshop\Model\ORM\Entity\Product">
         <options>
             <option name="charset">utf8mb4</option>
             <option name="collate">utf8mb4_unicode_ci</option>
@@ -9,37 +9,42 @@
             <generator strategy="IDENTITY"/>
         </id>
 
-        <unique-constraints>
-            <unique-constraint columns="username" name="unique_username" />
-        </unique-constraints>
-
-        <field name="username" type="string" nullable="false" length="32">
+        <field name="HSCode" type="string" length="32" nullable="false">
             <options>
                 <option name="fixed"/>
             </options>
         </field>
-        <field name="password" type="string" nullable="false" length="255">
+        <field name="EAN" type="string" length="16" nullable="false">
             <options>
                 <option name="fixed"/>
             </options>
         </field>
-        <field name="role" type="string" nullable="false" length="16">
+        <field name="SKU" type="string" length="32" nullable="false">
             <options>
                 <option name="fixed"/>
             </options>
         </field>
-        <field name="email" type="string" nullable="false" length="255">
+        <field name="name" type="string" length="255" nullable="false">
             <options>
                 <option name="fixed"/>
             </options>
         </field>
-        <field name="confirmationHash" type="string" nullable="true" length="16">
+        <field name="price" type="decimal" precision="10" scale="2">
             <options>
                 <option name="fixed"/>
             </options>
         </field>
-        <field name="confirmationDate" type="datetime" nullable="true">
-
+        <field name="vatType" type="string" enum-type="Eshop\Model\ORM\Lists\VatType" nullable="false">
+            <options>
+                <option name="default">standard</option>
+            </options>
         </field>
+        <one-to-one field="stockItem" target-entity="Eshop\Model\ORM\Entity\StockItem" mapped-by="product">
+            <cascade>
+                <cascade-persist/>
+                <cascade-remove/>
+            </cascade>
+        </one-to-one>
+        <many-to-one field="category" target-entity="Eshop\Model\ORM\Entity\Category" />
     </entity>
 </doctrine-mapping>

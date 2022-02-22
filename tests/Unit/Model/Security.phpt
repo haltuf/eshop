@@ -16,7 +16,7 @@ use Tester\Assert;
 class SecurityTest extends ORMTestCase
 {
 
-	public function testAuthenticator()
+	public function testAuthenticatorAndAuthorizator()
 	{
 		$user = $this->container->getByType(\Nette\Security\User::class);
 		Assert::false($user->isLoggedIn());

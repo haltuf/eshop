@@ -30,10 +30,13 @@
 		<div class="header @@classList">
 			{include '#top.latte'}
 		</div>
-		<!-- Container fluid -->
-		<div class="bg-primary pt-10 pb-21"></div>
-		<div class="container-fluid mt-n22 px-6">
-			{include content}
+
+		<div n:if="$flashes" n:foreach="$flashes as $flash" class="alert alert-{$flash->type}">
+			{$flash->message}
+		</div>
+
+		{include content}
+
 		</div>
 	</div>
 </div>

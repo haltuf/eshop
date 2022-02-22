@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+    <entity name="Eshop\Model\ORM\Entity\Category">
+        <options>
+            <option name="charset">utf8mb4</option>
+            <option name="collate">utf8mb4_unicode_ci</option>
+        </options>
+        <id name="id" type="integer" column="id">
+            <generator strategy="IDENTITY"/>
+        </id>
+
+        <field name="name" type="string" length="255" nullable="false">
+            <options>
+                <option name="fixed"/>
+                <option name="default"/>
+            </options>
+        </field>
+
+        <one-to-many field="children" target-entity="Eshop\Model\ORM\Entity\Category" mapped-by="parent" />
+        <many-to-one field="parent" target-entity="Eshop\Model\ORM\Entity\Category" inversed-by="children" />
+    </entity>
+</doctrine-mapping>
