@@ -67,4 +67,4 @@ class CategoryTest extends ORMTestCase
 	}
 }
 
-(new CategoryTest($container))->run();
+(new CategoryTest())->run();

@@ -60,4 +60,4 @@ class StockTest extends ORMTestCase
 	}
 }
 
-(new StockTest($container))->run();
+(new StockTest())->run();

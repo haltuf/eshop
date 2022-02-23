@@ -9,6 +9,7 @@ use Eshop\Model\ORM\Entity\User;
 use Eshop\Model\ORM\Services\UserService;
 use Eshop\Tests\ORMTestCase;
 use Nette\Security\AuthenticationException;
+use Nette\Security\Passwords;
 use Nette\Security\SimpleIdentity;
 use Tester\Assert;
 
@@ -20,7 +21,8 @@ class UserServiceTest extends ORMTestCase
 	public function setUp()
 	{
 		parent::setUp();
-		$this->userService = $this->container->getByType(UserService::class);
+		$passwords = $this->createContainer()->getByType(Passwords::class);
+		$this->userService = new UserService($this->em, $passwords);
 	}
 
 	public function testFindUser()
@@ -54,4 +56,4 @@ class UserServiceTest extends ORMTestCase
 	}
 }
 
-(new UserServiceTest($container))->run();
+(new UserServiceTest())->run();

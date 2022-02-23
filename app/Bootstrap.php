@@ -38,7 +38,15 @@ class Bootstrap
 	public static function bootForTests(): Configurator
 	{
 		$configurator = self::boot();
+		$configurator->setDebugMode(false);
 		Environment::setup();
+		return $configurator;
+	}
+
+	public static function bootForCli(): Configurator
+	{
+		$configurator = self::boot();
+		$configurator->setDebugMode(false);
 		return $configurator;
 	}
 }

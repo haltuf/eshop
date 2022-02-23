@@ -14,8 +14,8 @@ class TestingORMTest extends ORMTestCase
 {
 	public function testGetEntityManager()
 	{
-		Assert::type(EntityManagerInterface::class, $this->getEntityManager());
+		Assert::type(EntityManagerInterface::class, $this->createEntityManager());
 	}
 }
 
-(new TestingORMTest($container))->run();
+(new TestingORMTest())->run();

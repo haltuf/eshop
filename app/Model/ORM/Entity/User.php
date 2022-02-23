@@ -15,7 +15,7 @@ class User extends AbstractEntity
 
 	protected ?string $confirmationHash = null;
 
-	protected ?\DateTimeImmutable $confirmationDate = null;
+	protected ?\DateTime $confirmationDate = null;
 
 
 	public function getUsername(): string
@@ -68,12 +68,12 @@ class User extends AbstractEntity
 		$this->confirmationHash = $confirmationHash;
 	}
 
-	public function getConfirmationDate(): ?\DateTimeImmutable
+	public function getConfirmationDate(): ?\DateTime
 	{
 		return $this->confirmationDate;
 	}
 
-	public function setConfirmationDate(?\DateTimeImmutable $confirmationDate): void
+	public function setConfirmationDate(?\DateTime $confirmationDate): void
 	{
 		$this->confirmationDate = $confirmationDate;
 	}

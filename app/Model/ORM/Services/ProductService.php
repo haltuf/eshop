@@ -3,6 +3,7 @@
 namespace Eshop\Model\ORM\Services;
 
 use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\EntityRepository;
 use Eshop\Model\ORM\Entity\Category;
 use Eshop\Model\ORM\Entity\Product;
 use Eshop\Model\ORM\Lists\VatType;
@@ -87,8 +88,9 @@ class ProductService extends AbstractService
 	/**
 	 * @return Category[]
 	 */
-	public function getCategories(): array|Collection
+	public function getCategories(): array
 	{
+		/** @var EntityRepository */
 		return $this->em->getRepository(Category::class)->findAll();
 	}
 

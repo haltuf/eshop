@@ -4,7 +4,6 @@ namespace Eshop\Tests;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Tester\Environment;
-use Tester\TestCase;
 
 abstract class ORMTestCase extends AbstractTestCase
 {
@@ -14,7 +13,7 @@ abstract class ORMTestCase extends AbstractTestCase
 	public function setUp()
 	{
 		Environment::lock('database-orm', __DIR__ . '/tmp');
-		$this->em = $this->getEntityManager();
+		$this->em = $this->createEntityManager();
 		$this->em->beginTransaction();
 	}
 
@@ -23,8 +22,10 @@ abstract class ORMTestCase extends AbstractTestCase
 		$this->em->rollback();
 	}
 
-	public function getEntityManager(): EntityManagerInterface
+	public function createEntityManager(): EntityManagerInterface
 	{
-		return $this->container->getByType(EntityManagerInterface::class);
+		$container = $this->createContainer();
+		$em = $container->getByType(EntityManagerInterface::class);
+		return $em;
 	}
 }

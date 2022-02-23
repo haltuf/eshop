@@ -22,4 +22,4 @@ class VatTypeTest extends AbstractTestCase
 	}
 }
 
-(new VatTypeTest($container))->run();
+(new VatTypeTest())->run();

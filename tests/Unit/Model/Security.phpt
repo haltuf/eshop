@@ -4,21 +4,25 @@ namespace Eshop\Tests\Unit\Model;
 
 $container = require __DIR__ . '/../../bootstrap.php';
 
-use Doctrine\ORM\EntityManagerInterface;
-use Eshop\Model\ORM\Entity\User;
-use Eshop\Model\ORM\Services\UserService;
 use Eshop\Tests\ORMTestCase;
-use Nette\Security\AuthenticationException;
-use Nette\Security\SimpleIdentity;
+use Nette\Security\User;
 use Tester\Assert;
 
 
 class SecurityTest extends ORMTestCase
 {
 
+	protected User $user;
+
+	public function setUp()
+	{
+		parent::setUp();
+		$this->user = $this->createContainer()->getByType(User::class);
+	}
+
 	public function testAuthenticatorAndAuthorizator()
 	{
-		$user = $this->container->getByType(\Nette\Security\User::class);
+		$user = $this->user;
 		Assert::false($user->isLoggedIn());
 		Assert::false($user->isAllowed('backend'));
 
@@ -28,4 +32,4 @@ class SecurityTest extends ORMTestCase
 	}
 }
 
-(new SecurityTest($container))->run();
+(new SecurityTest())->run();

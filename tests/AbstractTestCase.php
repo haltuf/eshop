@@ -2,13 +2,15 @@
 
 namespace Eshop\Tests;
 
+use Eshop\Bootstrap;
 use Nette\DI\Container;
 use Tester\TestCase;
 
 abstract class AbstractTestCase extends TestCase
 {
 
-	public function __construct(
-		protected Container $container,
-	) {}
+	public function createContainer(): Container
+	{
+		return Bootstrap::bootForTests()->createContainer();
+	}
 }

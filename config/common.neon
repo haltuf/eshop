@@ -53,3 +53,7 @@ nettrine.migrations:
 decorator:
 	Symfony\Component\Console\Command\Command:
 		tags: [Nette\DI\Extensions\InjectExtension::TAG_INJECT]
+
+nettrine.fixtures:
+	paths:
+		- %appDir%/../tests/Fixtures
