@@ -1,0 +1,30 @@
+name: Test
+
+on: [push]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Build docker
+      run: docker-compose -f .docker/docker-compose.yml -p eshop up -d --build --force-recreate
+      env:
+        COMPOSER_AUTH: ${{ secrets.COMPOSER_AUTH }}
+
+    - name: Install composer
+      run: docker exec eshop composer install --no-interaction
+
+    - name: Startup scripts
+      run: docker exec eshop composer run-script startup
+
+    - name: Test
+      run: docker exec eshop vendor/bin/tester tests -C
+
+    - name: Archive logs
+      if: failure()
+      uses: actions/upload-artifact@v2
+      with:
+        name: log
+        path: log

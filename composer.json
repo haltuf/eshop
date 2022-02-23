@@ -36,7 +36,7 @@
 		"psr-4": {
 			"Eshop\\": "app",
 			"Eshop\\Tests\\": "tests",
-			"Eshop\\Console\\": "bin/console"
+			"Eshop\\Console\\": "bin/Console"
 		}
 	},
 	"minimum-stability": "stable",
@@ -44,5 +44,13 @@
 		"allow-plugins": {
 			"symfony/thanks": true
 		}
+	},
+	"scripts": {
+		"startup": [
+			"wait-for-it eshop_db:3306 -t 60",
+			"php bin/console.php migrations:migrate --no-interaction",
+			"php bin/console.php eshop:create-user MichalHaltuf haltuf@imagineo.cz administrator test --no-interaction",
+			"php bin/console.php doctrine:fixtures:load -n --append --no-interaction"
+		]
 	}
 }
