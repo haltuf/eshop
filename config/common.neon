@@ -20,7 +20,7 @@ di:
 extensions:
 	# Common
 	console: Contributte\Console\DI\ConsoleExtension(%consoleMode%)
-	#nettrine.annotations: Nettrine\Annotations\DI\AnnotationsExtension
+	nettrine.annotations: Nettrine\Annotations\DI\AnnotationsExtension
 	nettrine.cache: Nettrine\Cache\DI\CacheExtension
 	nettrine.migrations: Nettrine\Migrations\DI\MigrationsExtension
 	nettrine.fixtures: Nettrine\Fixtures\DI\FixturesExtension
@@ -33,8 +33,10 @@ extensions:
 	nettrine.orm: Nettrine\ORM\DI\OrmExtension
 	nettrine.orm.cache: Nettrine\ORM\DI\OrmCacheExtension
 	nettrine.orm.console: Nettrine\ORM\DI\OrmConsoleExtension
-	#nettrine.orm.annotations: Nettrine\ORM\DI\OrmAnnotationsExtension
+	nettrine.orm.annotations: Nettrine\ORM\DI\OrmAnnotationsExtension
 	nettrine.orm.xml: Nettrine\ORM\DI\OrmXmlExtension
+
+	nettrine.extensions.atlantic18: Nettrine\Extensions\Atlantic18\DI\Atlantic18BehaviorExtension
 
 nettrine.orm.xml:
   mapping: [
@@ -57,3 +59,10 @@ decorator:
 nettrine.fixtures:
 	paths:
 		- %appDir%/../tests/Fixtures
+
+nettrine.orm.annotations:
+	mapping:
+		Gedmo\Sortable: %appDir%/../vendor/gedmo/doctrine-extensions/src/Sortable/Entity
+
+nettrine.extensions.atlantic18:
+	sortable: true

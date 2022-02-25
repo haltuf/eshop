@@ -149,7 +149,7 @@
 									<div>
 										<div class="icon-shape icon-md border p-4
 									rounded-1">
-											<img src="assets/images/brand/dropbox-logo.svg" alt="">
+											<a n:href="product, $product->getId()"><img n:if="$product->getImages()->first()" src="{$basePath}/uploads/{$product->getImages()->first()->getUuid()}" alt="" class="avatar avatar-lg"></a>
 										</div>
 									</div>
 									<div class="ms-3 lh-1">
@@ -163,7 +163,7 @@
 								{$product->getSKU()}
 							</td>
 							<td class="align-middle text-dark">
-								{$product->getPrice()|number:2:',':' '} Kč
+								{$product->getPrice()|number,2,',',' '} Kč
 							</td>
 							<td class="align-middle">
 								{$product->getStock()->getQuantity()} ks
@@ -173,11 +173,11 @@
 						</tbody>
 					</table>
 				</div>
-				<!-- card footer  -->
+				{*<!-- card footer  -->
 				<div class="card-footer bg-white text-center">
 					<a href="#" class="link-primary">View All Projects</a>
 
-				</div>
+				</div>*}
 			</div>
 
 		</div>

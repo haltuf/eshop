@@ -2,6 +2,8 @@
 
 namespace Eshop\Model\ORM\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Eshop\Model\ORM\Lists\VatType;
 
 class Product extends AbstractEntity
@@ -22,10 +24,13 @@ class Product extends AbstractEntity
 
 	private Category $category;
 
+	private array|Collection $images;
+
 	public function __construct(Category $category)
 	{
 		$this->stockItem = new StockItem($this);
 		$this->category = $category;
+		$this->images = new ArrayCollection();
 	}
 
 	public function getHSCode(): string
@@ -108,4 +113,19 @@ class Product extends AbstractEntity
 		$this->category = $category;
 	}
 
+	/**
+	 * @return ProductImage[]
+	 */
+	public function getImages(): Collection|array
+	{
+		return $this->images;
+	}
+
+	public function addImage(ProductImage $image): void
+	{
+		if (!$this->getImages()->contains($image)) {
+			$this->getImages()->add($image);
+			$image->setProduct($this);
+		}
+	}
 }

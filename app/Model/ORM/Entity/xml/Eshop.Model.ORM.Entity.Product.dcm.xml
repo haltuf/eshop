@@ -46,5 +46,15 @@
             </cascade>
         </one-to-one>
         <many-to-one field="category" target-entity="Eshop\Model\ORM\Entity\Category" />
+
+        <one-to-many field="images" target-entity="Eshop\Model\ORM\Entity\ProductImage" mapped-by="product" orphan-removal="true">
+            <cascade>
+                <cascade-persist/>
+                <cascade-remove/>
+            </cascade>
+            <order-by>
+                <order-by-field name="position" direction="ASC"/>
+            </order-by>
+        </one-to-many>
     </entity>
 </doctrine-mapping>

@@ -7,6 +7,7 @@ use Eshop\Model\ORM\Services\ProductService;
 use Nette\Application\UI\Form;
 use Nette\Application\UI\Presenter;
 use Nette\DI\Attributes\Inject;
+use Nette\Http\FileUpload;
 use Nette\Security\AuthenticationException;
 
 
@@ -63,6 +64,8 @@ final class AdminPresenter extends Presenter
 				'price' => $product->getPrice(),
 				'vatType' => $product->getVatType()->value,
 			]);
+
+			$this->template->product = $product;
 		}
 	}
 
@@ -100,6 +103,7 @@ final class AdminPresenter extends Presenter
 		$form->addText('price', 'Cena');
 		$form->addSelect('vatType', 'DPH', VatType::items());
 		$form->addSelect('category', 'Kategorie', $this->productService->getCategoryItems());
+		$form->addMultiUpload('images', 'Obrázky');
 		$form->addSubmit('send', 'Uložit');
 		$form->onSuccess[] = [$this, 'productFormSuccess'];
 
@@ -109,6 +113,7 @@ final class AdminPresenter extends Presenter
 	public function productFormSuccess(Form $form)
 	{
 		$values = $form->getValues();
+
 		$id = (int) $this->getParameter('id');
 		if (empty($id)) {
 			$product = $this->productService->createProduct($values);
@@ -117,6 +122,8 @@ final class AdminPresenter extends Presenter
 			$product = $this->productService->updateProduct($id, $values);
 			$this->flashMessage('Produkt ID: ' . $product->getId() . ' - ' . $product->getName() . ' byl úspěšně upraven.');
 		}
+
+		$this->productService->addImages($product, $values->images);
 
 		$this->redirect('this');
 	}

@@ -90,7 +90,7 @@ class ProductTest extends ORMTestCase
 			'vatType' => VatType::REDUCED_RATE_1->value,
 		]);
 
-		$product = $this->productService->createProduct($data);
+		$product = $this->productService->saveProduct($data);
 		Assert::type(Product::class, $product);
 
 		$product = $this->productService->getProduct($product->getId());
@@ -103,20 +103,60 @@ class ProductTest extends ORMTestCase
 		Assert::same(VatType::REDUCED_RATE_1, $product->getVatType());
 	}
 
-	/**
-	 * @todo: allow to update only some properties
-	 */
-	/*public function testUpdateProductWithId()
+	public function testUpdateProductWithId()
 	{
 		$data = ArrayHash::from([
 			'name' => 'První produkt - updated',
 		]);
-		$product = $this->productService->updateProduct(1, $data);
+		$product = $this->productService->saveProduct($data, 1);
 		Assert::type(Product::class, $product);
 
 		$product = $this->productService->getProduct($product->getId());
+		Assert::same(1, $product->getCategory()->getId());
+		Assert::same('07031010', $product->getHSCode());
+		Assert::same('401234567890', $product->getEAN());
+		Assert::same('001-R', $product->getSKU());
+		Assert::same('První produkt - updated', $product->getName());
+		Assert::same(125.89, $product->getPrice());
+		Assert::same(VatType::STANDARD_RATE, $product->getVatType());
+	}
 
-	}*/
+	public function testUpdateProductWithProduct()
+	{
+		$data = ArrayHash::from([
+			'name' => 'První produkt - updated',
+		]);
+		$product = $this->productService->getProduct(1);
+		$product = $this->productService->saveProduct($data, $product);
+		Assert::type(Product::class, $product);
+
+		$product = $this->productService->getProduct($product->getId());
+		Assert::same('První produkt - updated', $product->getName());
+	}
+
+	public function testUpdateProductWithArray()
+	{
+		$data = [
+			'name' => 'První produkt - updated',
+		];
+		$product = $this->productService->saveProduct($data, 1);
+		Assert::type(Product::class, $product);
+
+		$product = $this->productService->getProduct($product->getId());
+		Assert::same('První produkt - updated', $product->getName());
+	}
+
+	public function testUpdateProductWithObject()
+	{
+		$data = (object) [
+			'name' => 'První produkt - updated',
+		];
+		$product = $this->productService->saveProduct($data, 1);
+		Assert::type(Product::class, $product);
+
+		$product = $this->productService->getProduct($product->getId());
+		Assert::same('První produkt - updated', $product->getName());
+	}
 
 	public function testListProducts()
 	{

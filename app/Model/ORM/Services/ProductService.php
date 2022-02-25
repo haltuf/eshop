@@ -6,7 +6,9 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\EntityRepository;
 use Eshop\Model\ORM\Entity\Category;
 use Eshop\Model\ORM\Entity\Product;
+use Eshop\Model\ORM\Entity\ProductImage;
 use Eshop\Model\ORM\Lists\VatType;
+use Nette\Http\FileUpload;
 use Nette\Utils\ArrayHash;
 
 class ProductService extends AbstractService
@@ -41,35 +43,33 @@ class ProductService extends AbstractService
 		return $this->em->getRepository(Product::class)->find($id);
 	}
 
-	public function createProduct(ArrayHash $values): Product
+	public function saveProduct(\Traversable|array|\stdClass $values, Product|int|null $product = null): Product
 	{
-		$category = $this->getCategory($values->category);
-		$product = new Product($category);
-		$product->setName($values->name);
-		$product->setEAN($values->EAN);
-		$product->setHSCode($values->HSCode);
-		$product->setPrice((float) str_replace([' ', ','], ['', '.'], $values->price));
-		$product->setVatType(VatType::from($values->vatType));
+		$values = (array) $values;
 
-		$this->em->persist($product);
-		$this->em->flush();
-
-		return $product;
-	}
-
-	public function updateProduct(int|Product $product, ArrayHash $values): Product
-	{
 		if (is_int($product))
 			$product = $this->getProduct($product);
 
-		$category = $this->getCategory($values->category);
+		if ($product === null) {
+			$category = $this->getCategory($values['category']);
+			$product = new Product($category);
+		}
 
-		$product->setCategory($category);
-		$product->setName($values->name);
-		$product->setEAN($values->EAN);
-		$product->setHSCode($values->HSCode);
-		$product->setPrice((float) str_replace([' ', ','], ['', '.'], $values->price));
-		$product->setVatType(VatType::from($values->vatType));
+		foreach (['name', 'EAN', 'HSCode'] as $var) {
+			if (isset($values[$var]))
+				$product->{'set' . ucfirst($var)}($values[$var]);
+		}
+
+		if (isset($values['vatType']))
+			$product->setVatType(VatType::from($values['vatType']));
+
+		if (isset($values['price']))
+			$product->setPrice((float) str_replace([' ', ','], ['', '.'], $values['price']));
+
+		if (isset($values['category']) && !isset($category)) {
+			$category = $this->getCategory($values['category']);
+			$product->setCategory($category);
+		}
 
 		$this->em->persist($product);
 		$this->em->flush();
@@ -104,5 +104,27 @@ class ProductService extends AbstractService
 		}
 
 		return $items;
+	}
+
+	/**
+	 * @param FileUpload[] $images
+	 */
+	public function addImages(Product $product, FileUpload|array $images): void
+	{
+		if ($images instanceof FileUpload)
+			$images = [$images];
+
+		foreach ($images as $i) {
+			$image = new ProductImage();
+			/** @todo: security */
+			$targetPath = __DIR__ . '/../../../../www/uploads/' . $image->getUuid();
+			$i->move($targetPath);
+			if (file_exists($targetPath)) {
+				$product->addImage($image);
+				$this->em->persist($image);
+			}
+		}
+
+		$this->em->flush();
 	}
 }

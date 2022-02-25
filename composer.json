@@ -26,7 +26,9 @@
 		"nettrine/migrations": "^0.8.0",
 		"nettrine/fixtures": "^0.6.1",
 		"nettrine/dbal": "^0.7.0",
-		"nettrine/orm": "^0.8.3"
+		"nettrine/orm": "^0.8.3",
+		"nettrine/extensions-atlantic18": "^0.6.0",
+		"ramsey/uuid": "^4.2"
 	},
 	"require-dev": {
 		"symfony/thanks": "^1",
