@@ -33,7 +33,7 @@ class BasketTest extends ORMTestCase
 	{
 		$category = new Category('Kategorie');
 		$product = new Product($category);
-		$product->getStock()->addTransaction(1);
+		$product->getStock()->addTransaction(3);
 		$basket = new Basket('123');
 
 		$basket->addProduct($product, 1);
