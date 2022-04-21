@@ -1,0 +1,28 @@
+<nav aria-label="breadcrumb">
+	<ol class="breadcrumb breadcrumb-light flex-lg-nowrap justify-content-center justify-content-lg-start">
+		{var $action = $presenter->getAction()}
+		{if array_key_exists($action, $breadcrumbs)}
+			{foreach $breadcrumbs[$action] as $item}
+				{if $item === 'default'}
+					<li class="breadcrumb-item">
+						<a class="text-nowrap" href="{plink Homepage:$item}">
+							<i class="ci-home"></i>Chytrobot.cz
+						</a>
+					</li>
+				{elseif $item === 'detail'}
+					<li class="breadcrumb-item text-nowrap active" aria-current="page">
+						<a href="{plink Homepage:$item, $product->getUrl()}">
+							{$product->getName()}
+						</a>
+					</li>
+				{else}
+					<li class="breadcrumb-item text-nowrap">
+						<a href="{plink Homepage:$item}">
+							{if array_key_exists($item, $names)}{$names[$item]}{/if}
+						</a>
+					</li>
+				{/if}
+			{/foreach}
+		{/if}
+	</ol>
+</nav>

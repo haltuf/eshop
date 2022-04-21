@@ -128,4 +128,15 @@ class Product extends AbstractEntity
 			$image->setProduct($this);
 		}
 	}
+
+	public function getUrl(): string
+	{
+		return (string) $this->getId();	// @todo
+	}
+
+	public function getMainImageUrl(): string
+	{
+		$first = $this->getImages()->first();
+		return $first !== false ? $first->getUuid() : '';
+	}
 }

@@ -6,6 +6,7 @@ services:
 	# ORM Services
 	- Eshop\Model\ORM\Services\UserService
 	- Eshop\Model\ORM\Services\ProductService
+	- Eshop\Model\ORM\Services\BasketService
 
 	# commands
 	- Eshop\Console\CreateUserCommand

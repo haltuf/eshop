@@ -17,6 +17,15 @@ enum VatType: string
 		};
 	}
 
+	public function short(): string
+	{
+		return match($this) {
+			self::STANDARD_RATE => '21 %',
+			self::REDUCED_RATE_1 => '15 %',
+			self::REDUCED_RATE_2 => '10 %',
+		};
+	}
+
 	public static function items(): array
 	{
 		$keys = array_column(self::cases(), 'value');

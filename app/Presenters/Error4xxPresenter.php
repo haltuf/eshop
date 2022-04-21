@@ -15,6 +15,8 @@ final class Error4xxPresenter extends Nette\Application\UI\Presenter
 		if (!$this->getRequest()->isMethod(Nette\Application\Request::FORWARD)) {
 			$this->error();
 		}
+
+		$this->setLayout('frontend');
 	}
 
 

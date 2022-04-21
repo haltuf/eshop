@@ -11,11 +11,8 @@ use Nette\Http\FileUpload;
 use Nette\Security\AuthenticationException;
 
 
-final class AdminPresenter extends Presenter
+final class AdminPresenter extends BasePresenter
 {
-
-	#[Inject]
-	public ProductService $productService;
 
 	public function startup()
 	{
@@ -116,10 +113,10 @@ final class AdminPresenter extends Presenter
 
 		$id = (int) $this->getParameter('id');
 		if (empty($id)) {
-			$product = $this->productService->createProduct($values);
+			$product = $this->productService->saveProduct($values);
 			$this->flashMessage('Produkt ID: ' . $product->getId() . ' - ' . $product->getName() . ' byl úspěšně vytvořen.');
 		} else {
-			$product = $this->productService->updateProduct($id, $values);
+			$product = $this->productService->saveProduct($values, $id);
 			$this->flashMessage('Produkt ID: ' . $product->getId() . ' - ' . $product->getName() . ' byl úspěšně upraven.');
 		}
 

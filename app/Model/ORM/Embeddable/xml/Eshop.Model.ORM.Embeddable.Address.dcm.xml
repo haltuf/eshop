@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+    <embeddable name="Eshop\Model\ORM\Embeddable\Address">
+        <field name="name" type="string" />
+        <field name="surname" type="string" />
+        <field name="address" type="string" />
+        <field name="zip" type="string" />
+        <field name="city" type="string" />
+        <field name="country" type="string" />
+        <field name="company" type="string" />
+        <field name="taxNumber" type="string" />
+        <field name="vatNumber" type="string" />
+    </embeddable>
+</doctrine-mapping>

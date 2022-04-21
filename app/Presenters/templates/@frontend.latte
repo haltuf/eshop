@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Cartzilla | Shop grid left sidebar</title>
+	<!-- SEO Meta Tags-->
+	<meta name="description" content="Cartzilla - Bootstrap E-commerce Template">
+	<meta name="keywords" content="bootstrap, shop, e-commerce, market, modern, responsive,  business, mobile, bootstrap, html5, css3, js, gallery, slider, touch, creative, clean">
+	<meta name="author" content="Createx Studio">
+	<!-- Viewport-->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- Favicon and Touch Icons-->
+	<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+	<link rel="manifest" href="site.webmanifest">
+	<link rel="mask-icon" color="#fe6a6a" href="safari-pinned-tab.svg">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="theme-color" content="#ffffff">
+	<!-- Vendor Styles including: Font Icons, Plugins, etc.-->
+	<link rel="stylesheet" media="screen" href="{$basePath}/frontend/vendor/simplebar/dist/simplebar.min.css"/>
+	<link rel="stylesheet" media="screen" href="{$basePath}/frontend/vendor/tiny-slider/dist/tiny-slider.css"/>
+	<link rel="stylesheet" media="screen" href="{$basePath}/frontend/vendor/nouislider/dist/nouislider.min.css"/>
+	<link rel="stylesheet" media="screen" href="{$basePath}/frontend/vendor/drift-zoom/dist/drift-basic.min.css"/>
+	<!-- Main Theme Styles + Bootstrap-->
+	<link rel="stylesheet" media="screen" href="{$basePath}/frontend/css/theme.min.css">
+</head>
+<!-- Body-->
+<body class="handheld-toolbar-enabled">
+{* {include signInModal from '#common.latte'} *}
+<main class="page-wrapper">
+	<!-- Navbar 3 Level (Light)-->
+	<header class="shadow-sm">
+		{*
+			{include topBar from '#common.latte'}
+		*}
+		<!-- Remove "navbar-sticky" class to make navigation bar scrollable with the page.-->
+		<div class="navbar-sticky bg-light">
+			<div class="navbar navbar-expand-lg navbar-light">
+				<div class="container"><a class="navbar-brand d-none d-sm-block flex-shrink-0" href="index.html"><img src="{$basePath}/frontend/img/logo-dark.png" width="142" alt="Cartzilla"></a><a class="navbar-brand d-sm-none flex-shrink-0 me-2" href="index.html"><img src="{$basePath}/frontend/img/logo-icon.png" width="74" alt="Cartzilla"></a>
+					<div class="input-group d-none d-lg-flex mx-4">
+						<input class="form-control rounded-end pe-5" type="text" placeholder="Search for products"><i class="ci-search position-absolute top-50 end-0 translate-middle-y text-muted fs-base me-3"></i>
+					</div>
+					<div class="navbar-toolbar d-flex flex-shrink-0 align-items-center">
+						<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"><span class="navbar-toggler-icon"></span></button><a class="navbar-tool navbar-stuck-toggler" href="#"><span class="navbar-tool-tooltip">Rozbalit menu</span>
+							{*<div class="navbar-tool-icon-box"><i class="navbar-tool-icon ci-menu"></i></div></a><a class="navbar-tool d-none d-lg-flex" href="account-wishlist.html"><span class="navbar-tool-tooltip">Wishlist</span>*}
+							{*<div class="navbar-tool-icon-box"><i class="navbar-tool-icon ci-heart"></i></div></a><a class="navbar-tool ms-1 ms-lg-0 me-n1 me-lg-2" href="#signin-modal" data-bs-toggle="modal">
+							<div class="navbar-tool-icon-box"><i class="navbar-tool-icon ci-user"></i></div>
+							<div class="navbar-tool-text ms-n3"><small>Hello, Sign in</small>My Account</div></a>*}
+						{include basketInfo from '#common.latte'}
+					</div>
+				</div>
+			</div>
+			<div class="navbar navbar-expand-lg navbar-light navbar-stuck-menu mt-n2 pt-0 pb-2">
+				<div class="container">
+					<div class="collapse navbar-collapse" id="navbarCollapse">
+						<!-- Search-->
+						<div class="input-group d-lg-none my-3"><i class="ci-search position-absolute top-50 start-0 translate-middle-y text-muted fs-base ms-3"></i>
+							<input class="form-control rounded-start" type="text" placeholder="Search for products">
+						</div>
+						{include mainMenu from '#common.latte'}
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+
+	{include content}
+</main>
+<!-- Footer-->
+<footer class="footer bg-dark pt-5">
+	<div class="container">
+		<div class="row pb-2">
+			<div class="col-md-4 col-sm-6">
+				<div class="widget widget-links widget-light pb-2 mb-4">
+					<h3 class="widget-title text-light">Informace o objednávkách</h3>
+					<ul class="widget-list">
+						{*<li class="widget-list-item"><a class="widget-list-link" href="#">Your account</a></li>*}
+						<li class="widget-list-item"><a class="widget-list-link" href="#">Doprava</a></li>
+						<li class="widget-list-item"><a class="widget-list-link" href="#">Vrácení zboží</a></li>
+						<li class="widget-list-item"><a class="widget-list-link" href="#">Reklamace</a></li>
+						<li class="widget-list-item"><a class="widget-list-link" href="#">Sledování objednávky</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="col-md-4 col-sm-6">
+				<div class="widget widget-links widget-light pb-2 mb-4">
+					<h3 class="widget-title text-light">O nás</h3>
+					<ul class="widget-list">
+						<li class="widget-list-item"><a class="widget-list-link" href="#">Náš tým</a></li>
+						<li class="widget-list-item"><a class="widget-list-link" href="#">Kontakty</a></li>
+						<li class="widget-list-item"><a class="widget-list-link" href="#">Obchodní podmínky</a></li>
+						<li class="widget-list-item"><a class="widget-list-link" href="#">Reklamační řád</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="widget pb-2 mb-4">
+					<h3 class="widget-title text-light pb-1">Zůstaňte s námi</h3>
+					<form class="subscription-form validate" action="https://studio.us12.list-manage.com/subscribe/post?u=c7103e2c981361a6639545bd5&amp;amp;id=29ca296126" method="post" name="mc-embedded-subscribe-form" target="_blank" novalidate>
+						<div class="input-group flex-nowrap"><i class="ci-mail position-absolute top-50 translate-middle-y text-muted fs-base ms-3"></i>
+							<input class="form-control rounded-start" type="email" name="EMAIL" placeholder="Váš e-mail" required>
+							<button class="btn btn-primary" type="submit" name="subscribe">Odebírat</button>
+						</div>
+						<!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+						<div style="position: absolute; left: -5000px;" aria-hidden="true">
+							<input class="subscription-form-antispam" type="text" name="b_c7103e2c981361a6639545bd5_29ca296126" tabindex="-1">
+						</div>
+						<div class="form-text text-light opacity-50">Přihlaste se k odběru našeho newsletteru, neujdou Vám tak žádné novinky a slevy z nabídky produktů pro chytrou domácnost.</div>
+						<div class="subscription-status"></div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="pt-5 bg-darker">
+		<div class="container">
+			<div class="row pb-3">
+				<div class="col-md-3 col-sm-6 mb-4">
+					<div class="d-flex"><i class="ci-rocket text-primary" style="font-size: 2.25rem;"></i>
+						<div class="ps-3">
+							<h6 class="fs-base text-light mb-1">Rychlá doprava</h6>
+							<p class="mb-0 fs-ms text-light opacity-50">Prodáváme jen zboží skladem</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-3 col-sm-6 mb-4">
+					<div class="d-flex"><i class="ci-currency-exchange text-primary" style="font-size: 2.25rem;"></i>
+						<div class="ps-3">
+							<h6 class="fs-base text-light mb-1">Garance vrácení peněz</h6>
+							<p class="mb-0 fs-ms text-light opacity-50">Zboží můžete vrátit do 14 dnů</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-3 col-sm-6 mb-4">
+					<div class="d-flex"><i class="ci-support text-primary" style="font-size: 2.25rem;"></i>
+						<div class="ps-3">
+							<h6 class="fs-base text-light mb-1">Přátelská podpora</h6>
+							<p class="mb-0 fs-ms text-light opacity-50"></p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-3 col-sm-6 mb-4">
+					<div class="d-flex"><i class="ci-card text-primary" style="font-size: 2.25rem;"></i>
+						<div class="ps-3">
+							<h6 class="fs-base text-light mb-1">Bezpečná platba</h6>
+							<p class="mb-0 fs-ms text-light opacity-50">Plaťte kartou nebo převodem, bezpečně.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<hr class="hr-light mb-5">
+			<div class="row pb-2">
+				<div class="col-md-6 text-center text-md-start mb-4">
+					<div class="widget widget-links widget-light">
+						<ul class="widget-list d-flex flex-wrap justify-content-center justify-content-md-start">
+							<li class="widget-list-item me-4"><a class="widget-list-link" href="#">Nějaké</a></li>
+							<li class="widget-list-item me-4"><a class="widget-list-link" href="#">Užitečné</a></li>
+							<li class="widget-list-item me-4"><a class="widget-list-link" href="#">Odkazy</a></li>
+							<li class="widget-list-item me-4"><a class="widget-list-link" href="#">Affiliates</a></li>
+							<li class="widget-list-item me-4"><a class="widget-list-link" href="#">Sračky o cookies</a></li>
+						</ul>
+					</div>
+				</div>
+				{*<div class="col-md-6 text-center text-md-end mb-4">
+					<div class="mb-3"><a class="btn-social bs-light bs-twitter ms-2 mb-2" href="#"><i class="ci-twitter"></i></a><a class="btn-social bs-light bs-facebook ms-2 mb-2" href="#"><i class="ci-facebook"></i></a><a class="btn-social bs-light bs-instagram ms-2 mb-2" href="#"><i class="ci-instagram"></i></a><a class="btn-social bs-light bs-pinterest ms-2 mb-2" href="#"><i class="ci-pinterest"></i></a><a class="btn-social bs-light bs-youtube ms-2 mb-2" href="#"><i class="ci-youtube"></i></a></div><img class="d-inline-block" src="{$basePath}/frontend/img/cards-alt.png" width="187" alt="Payment methods">
+				</div>*}
+			</div>
+			<div class="pb-4 fs-xs text-light opacity-50 text-center text-md-start">&copy; 2022{if date('Y') > 2022}{php echo '-' . date('y')}{/if} <a class="text-light" href="https://www.imagineo.cz/" target="_blank" rel="noopener">imagineo.cz</a></div>
+		</div>
+	</div>
+</footer>
+<!-- Toolbar for handheld devices (Shop)-->
+<div class="handheld-toolbar">
+	<div class="d-table table-layout-fixed w-100"><a class="d-table-cell handheld-toolbar-item" href="#" data-bs-toggle="offcanvas" data-bs-target="#shop-sidebar"><span class="handheld-toolbar-icon"><i class="ci-filter-alt"></i></span><span class="handheld-toolbar-label">Filters</span></a><a class="d-table-cell handheld-toolbar-item" href="account-wishlist.html"><span class="handheld-toolbar-icon"><i class="ci-heart"></i></span><span class="handheld-toolbar-label">Wishlist</span></a><a class="d-table-cell handheld-toolbar-item" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" onclick="window.scrollTo(0, 0)"><span class="handheld-toolbar-icon"><i class="ci-menu"></i></span><span class="handheld-toolbar-label">Menu</span></a><a class="d-table-cell handheld-toolbar-item" href="shop-cart.html"><span class="handheld-toolbar-icon"><i class="ci-cart"></i><span class="badge bg-primary rounded-pill ms-1">4</span></span><span class="handheld-toolbar-label">$265.00</span></a></div>
+</div>
+<!-- Back To Top Button--><a class="btn-scroll-top" href="#top" data-scroll><span class="btn-scroll-top-tooltip text-muted fs-sm me-2">Top</span><i class="btn-scroll-top-icon ci-arrow-up">   </i></a>
+<!-- Vendor scrits: js libraries and plugins-->
+<script src="{$basePath}/frontend/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="{$basePath}/frontend/vendor/simplebar/dist/simplebar.min.js"></script>
+<script src="{$basePath}/frontend/vendor/tiny-slider/dist/min/tiny-slider.js"></script>
+<script src="{$basePath}/frontend/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+<script src="{$basePath}/frontend/vendor/nouislider/dist/nouislider.min.js"></script>
+<script src="{$basePath}/frontend/vendor/drift-zoom/dist/Drift.min.js"></script>
+<!-- Main theme script-->
+<script src="{$basePath}/frontend/js/theme.min.js"></script>
+</body>
+</html>

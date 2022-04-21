@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+    <entity name="Eshop\Model\ORM\Entity\Basket">
+        <options>
+            <option name="charset">utf8mb4</option>
+            <option name="collate">utf8mb4_unicode_ci</option>
+        </options>
+        <id name="id" type="integer" column="id">
+            <generator strategy="IDENTITY"/>
+        </id>
+
+        <field name="visitorId" type="string" length="32" nullable="false">
+            <options>
+                <option name="fixed"/>
+            </options>
+        </field>
+
+        <field name="uniqueId" type="string" length="32" nullable="false">
+            <options>
+                <option name="fixed"/>
+            </options>
+        </field>
+
+        <field name="createdAt" type="datetime">
+        </field>
+
+        <embedded name="deliveryAddress" class="Eshop\Model\ORM\Embeddable\Address" />
+
+        <embedded name="invoiceAddress" class="Eshop\Model\ORM\Embeddable\Address" />
+
+        <field name="email" type="string" nullable="true" />
+
+        <field name="phone" type="string" nullable="true" />
+
+        <one-to-many field="items" target-entity="Eshop\Model\ORM\Entity\BasketItem" mapped-by="basket" index-by="product_id">
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-many>
+    </entity>
+</doctrine-mapping>

@@ -1,0 +1,236 @@
+{templateType Eshop\Presenters\Templates\CommonTemplate}
+
+{block signInModal}
+	<!-- Sign in / sign up modal-->
+	<div class="modal fade" id="signin-modal" tabindex="-1" role="dialog">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header bg-secondary">
+					<ul class="nav nav-tabs card-header-tabs" role="tablist">
+						<li class="nav-item"><a class="nav-link fw-medium active" href="#signin-tab" data-bs-toggle="tab" role="tab" aria-selected="true"><i class="ci-unlocked me-2 mt-n1"></i>Sign in</a></li>
+						<li class="nav-item"><a class="nav-link fw-medium" href="#signup-tab" data-bs-toggle="tab" role="tab" aria-selected="false"><i class="ci-user me-2 mt-n1"></i>Sign up</a></li>
+					</ul>
+					<button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body tab-content py-4">
+					<form class="needs-validation tab-pane fade show active" autocomplete="off" novalidate id="signin-tab">
+						<div class="mb-3">
+							<label class="form-label" for="si-email">Email address</label>
+							<input class="form-control" type="email" id="si-email" placeholder="johndoe@example.com" required>
+							<div class="invalid-feedback">Please provide a valid email address.</div>
+						</div>
+						<div class="mb-3">
+							<label class="form-label" for="si-password">Password</label>
+							<div class="password-toggle">
+								<input class="form-control" type="password" id="si-password" required>
+								<label class="password-toggle-btn" aria-label="Show/hide password">
+									<input class="password-toggle-check" type="checkbox"><span class="password-toggle-indicator"></span>
+								</label>
+							</div>
+						</div>
+						<div class="mb-3 d-flex flex-wrap justify-content-between">
+							<div class="form-check mb-2">
+								<input class="form-check-input" type="checkbox" id="si-remember">
+								<label class="form-check-label" for="si-remember">Remember me</label>
+							</div><a class="fs-sm" href="#">Forgot password?</a>
+						</div>
+						<button class="btn btn-primary btn-shadow d-block w-100" type="submit">Sign in</button>
+					</form>
+					<form class="needs-validation tab-pane fade" autocomplete="off" novalidate id="signup-tab">
+						<div class="mb-3">
+							<label class="form-label" for="su-name">Full name</label>
+							<input class="form-control" type="text" id="su-name" placeholder="John Doe" required>
+							<div class="invalid-feedback">Please fill in your name.</div>
+						</div>
+						<div class="mb-3">
+							<label for="su-email">Email address</label>
+							<input class="form-control" type="email" id="su-email" placeholder="johndoe@example.com" required>
+							<div class="invalid-feedback">Please provide a valid email address.</div>
+						</div>
+						<div class="mb-3">
+							<label class="form-label" for="su-password">Password</label>
+							<div class="password-toggle">
+								<input class="form-control" type="password" id="su-password" required>
+								<label class="password-toggle-btn" aria-label="Show/hide password">
+									<input class="password-toggle-check" type="checkbox"><span class="password-toggle-indicator"></span>
+								</label>
+							</div>
+						</div>
+						<div class="mb-3">
+							<label class="form-label" for="su-password-confirm">Confirm password</label>
+							<div class="password-toggle">
+								<input class="form-control" type="password" id="su-password-confirm" required>
+								<label class="password-toggle-btn" aria-label="Show/hide password">
+									<input class="password-toggle-check" type="checkbox"><span class="password-toggle-indicator"></span>
+								</label>
+							</div>
+						</div>
+						<button class="btn btn-primary btn-shadow d-block w-100" type="submit">Sign up</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+{/block}
+
+{block topBar}
+	<!-- Topbar-->
+	<div class="topbar topbar-dark bg-dark">
+		<div class="container">
+			<div class="topbar-text dropdown d-md-none"><a class="topbar-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Useful links</a>
+				<ul class="dropdown-menu">
+					<li><a class="dropdown-item" href="tel:00331697720"><i class="ci-support text-muted me-2"></i>(00) 33 169 7720</a></li>
+					<li><a class="dropdown-item" href="order-tracking.html"><i class="ci-location text-muted me-2"></i>Order tracking</a></li>
+				</ul>
+			</div>
+			<div class="topbar-text text-nowrap d-none d-md-inline-block"><i class="ci-support"></i><span class="text-muted me-1">Support</span><a class="topbar-link" href="tel:00331697720">(00) 33 169 7720</a></div>
+			<div class="tns-carousel tns-controls-static d-none d-md-block">
+				<div class="tns-carousel-inner" data-carousel-options="{ &quot;mode&quot;: &quot;gallery&quot;, &quot;nav&quot;: false }">
+					<div class="topbar-text">Free shipping for order over $200</div>
+					<div class="topbar-text">We return money within 30 days</div>
+					<div class="topbar-text">Friendly 24/7 customer support</div>
+				</div>
+			</div>
+			<div class="ms-3 text-nowrap"><a class="topbar-link me-4 d-none d-md-inline-block" href="order-tracking.html"><i class="ci-location"></i>Order tracking</a>
+				<div class="topbar-text dropdown disable-autohide"><a class="topbar-link dropdown-toggle" href="#" data-bs-toggle="dropdown"><img class="me-2" src="{$basePath}/frontend/img/flags/en.png" width="20" alt="English">Eng / $</a>
+					<ul class="dropdown-menu dropdown-menu-end">
+						<li class="dropdown-item">
+							<select class="form-select form-select-sm">
+								<option value="usd">$ USD</option>
+								<option value="eur">€ EUR</option>
+								<option value="ukp">£ UKP</option>
+								<option value="jpy">¥ JPY</option>
+							</select>
+						</li>
+						<li><a class="dropdown-item pb-1" href="#"><img class="me-2" src="{$basePath}/frontend/img/flags/fr.png" width="20" alt="Français">Français</a></li>
+						<li><a class="dropdown-item pb-1" href="#"><img class="me-2" src="{$basePath}/frontend/img/flags/de.png" width="20" alt="Deutsch">Deutsch</a></li>
+						<li><a class="dropdown-item" href="#"><img class="me-2" src="{$basePath}/frontend/img/flags/it.png" width="20" alt="Italiano">Italiano</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+{/block}
+
+{block basketInfo}
+	<div class="navbar-tool dropdown ms-3">
+		<a class="navbar-tool-icon-box bg-secondary dropdown-toggle" n:href="basket">
+			<span class="navbar-tool-label">{$basket->getItemCount()}</span>
+			<i class="navbar-tool-icon ci-cart"></i>
+		</a>
+		<a class="navbar-tool-text" n:href="basket"><small>Můj košík</small>{$basket->getTotal()|displayPrice}</a>
+		<!-- Cart dropdown-->
+		<div class="dropdown-menu dropdown-menu-end">
+			<div class="widget widget-cart px-3 pt-2 pb-3" style="width: 20rem;">
+				<div style="max-height: 15rem;" data-simplebar data-simplebar-auto-hide="false">
+					{foreach $basket->getItems() as $item}
+						<div n:class="widget-cart-item, $iterator->isFirst() ? pb-2 : py-2, border-bottom">
+							<button class="btn-close text-danger" type="button" aria-label="Remove"><span aria-hidden="true">&times;</span></button>
+							<div class="d-flex align-items-center">
+								<a class="flex-shrink-0" n:href="detail, $item->getProduct()->getUrl()">
+									<img src="{$basePath}/uploads/{$item->getProduct()->getMainImageUrl()}" width="64" alt="{$item->getProduct()->getName()}">
+								</a>
+								<div class="ps-2">
+									<h6 class="widget-product-title"><a n:href="detail, $item->getProduct()->getUrl()">{$item->getProduct()->getName()}</a></h6>
+									<div class="widget-product-meta"><span class="text-accent me-2">{$item->getPrice()|displayPrice}</span><span class="text-muted">x {$item->getQuantity()}</span></div>
+								</div>
+							</div>
+						</div>
+					{/foreach}
+				</div>
+				<div class="d-flex flex-wrap justify-content-between align-items-center py-3">
+					<div class="fs-sm me-2 py-2">
+						<span class="text-muted">Mezisoučet:</span>
+						<span class="text-accent fs-base ms-1">{$basket->getTotal()|displayPrice}</span>
+					</div>
+					<a class="btn btn-outline-secondary btn-sm" n:href="basket">Zobrazit košík<i class="ci-arrow-right ms-1 me-n1"></i></a>
+				</div>
+				<a class="btn btn-primary btn-sm d-block w-100" href="checkout-details.html">
+					<i class="ci-card me-2 fs-base align-middle"></i>Dokončit objednávku
+				</a>
+			</div>
+		</div>
+	</div>
+{/block}
+
+{block mainMenu}
+	{*<!-- Departments menu-->
+	<ul class="navbar-nav navbar-mega-nav pe-lg-2 me-lg-2">
+		<li class="nav-item dropdown"><a class="nav-link dropdown-toggle ps-lg-0" href="#" data-bs-toggle="dropdown"><i class="ci-view-grid me-2"></i>Departments</a>
+			<div class="dropdown-menu px-2 pb-4">
+				<div class="d-flex flex-wrap flex-sm-nowrap">
+					<div class="mega-dropdown-column pt-3 pt-sm-4 px-2 px-lg-3">
+						<div class="widget widget-links"><a class="d-block overflow-hidden rounded-3 mb-3" href="#"><img src="{$basePath}/frontend/img/shop/departments/01.jpg" alt="Clothing"></a>
+							<h6 class="fs-base mb-2">Clothing</h6>
+							<ul class="widget-list">
+								<li class="widget-list-item mb-1"><a class="widget-list-link" href="#">Women's clothing</a></li>
+								<li class="widget-list-item mb-1"><a class="widget-list-link" href="#">Men's clothing</a></li>
+								<li class="widget-list-item mb-1"><a class="widget-list-link" href="#">Kid's clothing</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="mega-dropdown-column pt-4 px-2 px-lg-3">
+						<div class="widget widget-links"><a class="d-block overflow-hidden rounded-3 mb-3" href="#"><img src="{$basePath}/frontend/img/shop/departments/02.jpg" alt="Shoes"></a>
+							<h6 class="fs-base mb-2">Shoes</h6>
+							<ul class="widget-list">
+								<li class="widget-list-item mb-1"><a class="widget-list-link" href="#">Women's shoes</a></li>
+								<li class="widget-list-item mb-1"><a class="widget-list-link" href="#">Men's shoes</a></li>
+								<li class="widget-list-item mb-1"><a class="widget-list-link" href="#">Kid's shoes</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="mega-dropdown-column pt-4 px-2 px-lg-3">
+						<div class="widget widget-links"><a class="d-block overflow-hidden rounded-3 mb-3" href="#"><img src="{$basePath}/frontend/img/shop/departments/03.jpg" alt="Gadgets"></a>
+							<h6 class="fs-base mb-2">Gadgets</h6>
+							<ul class="widget-list">
+								<li class="widget-list-item mb-1"><a class="widget-list-link" href="#">Smartphones &amp; Tablets</a></li>
+								<li class="widget-list-item mb-1"><a class="widget-list-link" href="#">Wearable gadgets</a></li>
+								<li class="widget-list-item mb-1"><a class="widget-list-link" href="#">E-book readers</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="d-flex flex-wrap flex-sm-nowrap">
+					<div class="mega-dropdown-column pt-4 px-2 px-lg-3">
+						<div class="widget widget-links"><a class="d-block overflow-hidden rounded-3 mb-3" href="#"><img src="{$basePath}/frontend/img/shop/departments/04.jpg" alt="Furniture"></a>
+							<h6 class="fs-base mb-2">Furniture &amp; Decor</h6>
+							<ul class="widget-list">
+								<li class="widget-list-item mb-1"><a class="widget-list-link" href="#">Home furniture</a></li>
+								<li class="widget-list-item mb-1"><a class="widget-list-link" href="#">Office furniture</a></li>
+								<li class="widget-list-item mb-1"><a class="widget-list-link" href="#">Lighting and decoration</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="mega-dropdown-column pt-4 px-2 px-lg-3">
+						<div class="widget widget-links"><a class="d-block overflow-hidden rounded-3 mb-3" href="#"><img src="{$basePath}/frontend/img/shop/departments/05.jpg" alt="Accessories"></a>
+							<h6 class="fs-base mb-2">Accessories</h6>
+							<ul class="widget-list">
+								<li class="widget-list-item mb-1"><a class="widget-list-link" href="#">Hats</a></li>
+								<li class="widget-list-item mb-1"><a class="widget-list-link" href="#">Sunglasses</a></li>
+								<li class="widget-list-item mb-1"><a class="widget-list-link" href="#">Bags</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="mega-dropdown-column pt-4 px-2 px-lg-3">
+						<div class="widget widget-links"><a class="d-block overflow-hidden rounded-3 mb-3" href="#"><img src="{$basePath}/frontend/img/shop/departments/06.jpg" alt="Entertainment"></a>
+							<h6 class="fs-base mb-2">Entertainment</h6>
+							<ul class="widget-list">
+								<li class="widget-list-item mb-1"><a class="widget-list-link" href="#">Kid's toys</a></li>
+								<li class="widget-list-item mb-1"><a class="widget-list-link" href="#">Video games</a></li>
+								<li class="widget-list-item mb-1"><a class="widget-list-link" href="#">Outdoor / Camping</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</li>
+	</ul>*}
+
+	<!-- Primary menu-->
+	<ul class="navbar-nav">
+		<li n:class="nav-item"><a class="nav-link" n:href="list">Hlavní stránka</a></li>
+		<li n:class="nav-item, in_array($presenter->action, ['detail', 'list']) ? active"><a class="nav-link" n:href="list">E-shop</a></li>
+		<li n:class="nav-item, $presenter->action === 'basket' ? active"><a class="nav-link" n:href="basket">Košík</a></li>
+		<li n:class="nav-item"><a class="nav-link" n:href="list">Kontakty</a></li>
+	</ul>
+{/block}

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+    <entity name="Eshop\Model\ORM\Entity\BasketItem">
+        <options>
+            <option name="charset">utf8mb4</option>
+            <option name="collate">utf8mb4_unicode_ci</option>
+        </options>
+        <id name="id" type="integer" column="id">
+            <generator strategy="IDENTITY"/>
+        </id>
+
+        <field name="quantity" type="integer" nullable="false">
+            <options>
+                <option name="default">1</option>
+            </options>
+        </field>
+
+        <field name="price" type="decimal" nullable="false" scale="2" precision="10">
+            <options>
+                <option name="default">0.00</option>
+            </options>
+        </field>
+
+        <field name="createdAt" type="datetime" nullable="false">
+
+        </field>
+
+        <many-to-one field="basket" target-entity="Eshop\Model\ORM\Entity\Basket" inversed-by="items">
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </many-to-one>
+
+        <many-to-one field="product" target-entity="Eshop\Model\ORM\Entity\Product">
+
+        </many-to-one>
+    </entity>
+</doctrine-mapping>
