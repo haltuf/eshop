@@ -14,9 +14,9 @@ class ProductImage extends AbstractEntity
 
 	private int $position;
 
-	public function __construct()
+	public function __construct(?string $uuid = null)
 	{
-		$this->uuid = Uuid::uuid4()->toString();
+		$this->uuid = $uuid ?? Uuid::uuid4()->toString();
 	}
 
 	public function getName(): string

@@ -17,7 +17,7 @@ class Bootstrap
 
 		//$configurator->setDebugMode('secret@23.75.345.200'); // enable for your remote IP
 		if (getenv('NETTE_DEBUG') == 1) {
-			//$configurator->setDebugMode(TRUE);
+			$configurator->setDebugMode(TRUE);
 		}
 		$configurator->enableTracy($appDir . '/log');
 

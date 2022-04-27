@@ -1,5 +1,5 @@
 <nav aria-label="breadcrumb">
-	<ol class="breadcrumb breadcrumb-light flex-lg-nowrap justify-content-center justify-content-lg-start">
+	<ol n:class="breadcrumb, $light ? breadcrumb-light, flex-lg-nowrap, justify-content-center, justify-content-lg-start">
 		{var $action = $presenter->getAction()}
 		{if array_key_exists($action, $breadcrumbs)}
 			{foreach $breadcrumbs[$action] as $item}
@@ -13,6 +13,12 @@
 					<li class="breadcrumb-item text-nowrap active" aria-current="page">
 						<a href="{plink Homepage:$item, $product->getUrl()}">
 							{$product->getName()}
+						</a>
+					</li>
+				{elseif $item === 'content'}
+					<li class="breadcrumb-item text-nowrap active" aria-current="page">
+						<a href="{plink Homepage:$item, $id}">
+							Obsah
 						</a>
 					</li>
 				{else}

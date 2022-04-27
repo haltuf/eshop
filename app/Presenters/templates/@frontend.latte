@@ -66,6 +66,36 @@
 		</div>
 	</header>
 
+	{foreach $flashes as $flash}
+		{if $flash->type === 'basket'}
+			<div class="modal" tabindex="-1" role="dialog" id="addBasketModal">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						</div>
+						<div class="modal-body">
+							<p class="fs-sm">{$flash->message|noescape}</p>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Pokračovat v nakupování</button>
+							<a n:href="basket" class="btn btn-primary btn-sm">Zobrazit košík</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			{capture $script}
+			<script type="text/javascript">
+    			var addBasketModal = new bootstrap.Modal(document.getElementById('addBasketModal'));
+                addBasketModal.show();
+			</script>
+			{/capture}
+		{else}
+			<div class="alert alert-primary" role="alert">
+				{$flash->message|noescape}
+			</div>
+		{/if}
+	{/foreach}
 	{include content}
 </main>
 <!-- Footer-->
@@ -77,10 +107,10 @@
 					<h3 class="widget-title text-light">Informace o objednávkách</h3>
 					<ul class="widget-list">
 						{*<li class="widget-list-item"><a class="widget-list-link" href="#">Your account</a></li>*}
-						<li class="widget-list-item"><a class="widget-list-link" href="#">Doprava</a></li>
-						<li class="widget-list-item"><a class="widget-list-link" href="#">Vrácení zboží</a></li>
-						<li class="widget-list-item"><a class="widget-list-link" href="#">Reklamace</a></li>
-						<li class="widget-list-item"><a class="widget-list-link" href="#">Sledování objednávky</a></li>
+						<li class="widget-list-item"><a class="widget-list-link" n:href="content, doprava">Doprava</a></li>
+						<li class="widget-list-item"><a class="widget-list-link" n:href="content, vraceni-zbozi">Vrácení zboží</a></li>
+						<li class="widget-list-item"><a class="widget-list-link" n:href="content, reklamace">Reklamace</a></li>
+						{*<li class="widget-list-item"><a class="widget-list-link" href="#">Sledování objednávky</a></li>*}
 					</ul>
 				</div>
 			</div>
@@ -88,10 +118,10 @@
 				<div class="widget widget-links widget-light pb-2 mb-4">
 					<h3 class="widget-title text-light">O nás</h3>
 					<ul class="widget-list">
-						<li class="widget-list-item"><a class="widget-list-link" href="#">Náš tým</a></li>
-						<li class="widget-list-item"><a class="widget-list-link" href="#">Kontakty</a></li>
-						<li class="widget-list-item"><a class="widget-list-link" href="#">Obchodní podmínky</a></li>
-						<li class="widget-list-item"><a class="widget-list-link" href="#">Reklamační řád</a></li>
+						{*}<li class="widget-list-item"><a class="widget-list-link" href="#">Náš tým</a></li>*}
+						<li class="widget-list-item"><a class="widget-list-link" n:href="content, kontakty">Kontakty</a></li>
+						<li class="widget-list-item"><a class="widget-list-link" n:href="content, vop">Obchodní podmínky</a></li>
+						<li class="widget-list-item"><a class="widget-list-link" n:href="content, reklamace">Reklamační řád</a></li>
 					</ul>
 				</div>
 			</div>
@@ -185,5 +215,6 @@
 <script src="{$basePath}/frontend/vendor/drift-zoom/dist/Drift.min.js"></script>
 <!-- Main theme script-->
 <script src="{$basePath}/frontend/js/theme.min.js"></script>
+{ifset $script}{$script}{/ifset}
 </body>
 </html>

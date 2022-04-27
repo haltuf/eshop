@@ -4,7 +4,7 @@ namespace Eshop\Model\ORM\Entity;
 
 class AbstractEntity
 {
-	protected int $id = 0;
+	protected ?int $id = 0;
 
 	public function getId(): int
 	{

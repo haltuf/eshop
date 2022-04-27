@@ -48,4 +48,14 @@ class BasketService extends AbstractService
 
 		return true;
 	}
+
+	public function remove(Product $product, int $quantity = 0): bool
+	{
+		$basket = $this->getBasket();
+		$basket->removeProduct($product, $quantity);
+		$this->em->persist($basket);
+		$this->em->flush();
+
+		return true;
+	}
 }

@@ -27,7 +27,7 @@
 
         <many-to-one field="basket" target-entity="Eshop\Model\ORM\Entity\Basket" inversed-by="items">
             <cascade>
-                <cascade-all/>
+                <cascade-persist/>
             </cascade>
         </many-to-one>
 

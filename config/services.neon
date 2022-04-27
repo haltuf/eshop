@@ -10,3 +10,6 @@ services:
 
 	# commands
 	- Eshop\Console\CreateUserCommand
+
+	# components
+	- Eshop\Components\AddBasketFactory

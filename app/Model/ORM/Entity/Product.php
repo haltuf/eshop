@@ -26,6 +26,14 @@ class Product extends AbstractEntity
 
 	private array|Collection $images;
 
+	private bool $visible = false;
+
+	private string $url = '';
+
+	private string $shortDescription = '';
+
+	private string $description = '';
+
 	public function __construct(Category $category)
 	{
 		$this->stockItem = new StockItem($this);
@@ -129,14 +137,60 @@ class Product extends AbstractEntity
 		}
 	}
 
-	public function getUrl(): string
-	{
-		return (string) $this->getId();	// @todo
-	}
-
 	public function getMainImageUrl(): string
 	{
 		$first = $this->getImages()->first();
 		return $first !== false ? $first->getUuid() : '';
 	}
+
+	public function getStockItem(): StockItem
+	{
+		return $this->stockItem;
+	}
+
+	public function setStockItem(StockItem $stockItem): void
+	{
+		$this->stockItem = $stockItem;
+	}
+
+	public function isVisible(): bool
+	{
+		return $this->visible;
+	}
+
+	public function setVisible(bool $visible): void
+	{
+		$this->visible = $visible;
+	}
+
+	public function getUrl(): string
+	{
+		return $this->url;
+	}
+
+	public function setUrl(string $url): void
+	{
+		$this->url = $url;
+	}
+
+	public function getShortDescription(): string
+	{
+		return $this->shortDescription;
+	}
+
+	public function setShortDescription(string $shortDescription): void
+	{
+		$this->shortDescription = $shortDescription;
+	}
+
+	public function getDescription(): string
+	{
+		return $this->description;
+	}
+
+	public function setDescription(string $description): void
+	{
+		$this->description = $description;
+	}
+
 }

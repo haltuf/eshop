@@ -10,13 +10,31 @@
 			<div>
 				<div class="d-flex justify-content-between align-items-center">
 					<div class="mb-2 mb-lg-0">
-						<h3 class="mb-0  text-white">Produkty</h3>
+						<h3 class="mb-0  text-white">Nástěnka</h3>
 					</div>
-					<div>
-						<a n:href="product" class="btn btn-white">Vytvořit nový produkt</a>
+				</div>
+			</div>
+		</div>
+		<div class="col-xl-3 col-lg-6 col-md-12 col-12 mt-6">
+			<!-- card -->
+			<div class="card ">
+				<!-- card body -->
+				<div class="card-body">
+					<!-- heading -->
+					<div class="d-flex justify-content-between align-items-center
+						mb-3">
+						<div>
+							<h4 class="mb-0">Kategorie</h4>
+						</div>
+						<div class="icon-shape icon-md bg-light-primary text-primary
+						  rounded-2">
+							<i class="bi bi-briefcase fs-4"></i>
+						</div>
 					</div>
+					<!-- project number -->
 					<div>
-						<a n:href="category" class="btn btn-white">Vytvořit novou kategorii</a>
+						<h1 class="fw-bold">{count($categories)}</h1>
+						{*<p class="mb-0"><span class="text-dark me-2">2</span>Completed</p>*}
 					</div>
 				</div>
 			</div>
@@ -34,7 +52,7 @@
 						</div>
 						<div class="icon-shape icon-md bg-light-primary text-primary
 						  rounded-2">
-							<i class="bi bi-briefcase fs-4"></i>
+							<i class="bi bi-cpu fs-4"></i>
 						</div>
 					</div>
 					<!-- project number -->
@@ -119,69 +137,8 @@
 			</div>
 		</div>
 	</div>*}
-	<!-- row  -->
-	<div class="row mt-6">
-		<div class="col-md-12 col-12">
-			<!-- card  -->
-			<div class="card">
-				<!-- card header  -->
-				<div class="card-header bg-white  py-4">
-					<h4 class="mb-0">Seznam produktů</h4>
-				</div>
-				<!-- table  -->
-				<div class="table-responsive">
-					<table class="table text-nowrap mb-0">
-						<thead class="table-light">
-						<tr>
-							<th>Jméno produktu</th>
-							<th>EAN</th>
-							<th>HSCode</th>
-							<th>SKU</th>
-							<th>Cena</th>
-							<th>Skladem</th>
-						</tr>
-						</thead>
-						<tbody>
-						<tr n:foreach="$products as $product">
-							<td class="align-middle">
-								<div class="d-flex
-								align-items-center">
-									<div>
-										<div class="icon-shape icon-md border p-4
-									rounded-1">
-											<a n:href="product, $product->getId()"><img n:if="$product->getImages()->first()" src="{$basePath}/uploads/{$product->getImages()->first()->getUuid()}" alt="" class="avatar avatar-lg"></a>
-										</div>
-									</div>
-									<div class="ms-3 lh-1">
-										<h5 class=" mb-1"> <a n:href="product, $product->getId()" class="text-inherit">{$product->getName()}</a></h5>
-									</div>
-								</div>
-							</td>
-							<td class="align-middle">{$product->getEAN()}</td>
-							<td class="align-middle">{$product->getHSCode()}</td>
-							<td class="align-middle">
-								{$product->getSKU()}
-							</td>
-							<td class="align-middle text-dark">
-								{$product->getPrice()|number,2,',',' '} Kč
-							</td>
-							<td class="align-middle">
-								{$product->getStock()->getQuantity()} ks
-							</td>
-						</tr>
-
-						</tbody>
-					</table>
-				</div>
-				{*<!-- card footer  -->
-				<div class="card-footer bg-white text-center">
-					<a href="#" class="link-primary">View All Projects</a>
-
-				</div>*}
-			</div>
-
-		</div>
-	</div>
+	{include listCategories}
+	{include listProducts}
 	{*
 	<!-- row  -->
 	<div class="row my-6">
@@ -436,3 +393,106 @@
 	</div>
 	*}
 </div>
+{/block}
+
+{block listCategories}
+<!-- row  -->
+	<div class="row mt-6">
+		<div class="col-md-12 col-12">
+			<!-- card  -->
+			<div class="card">
+				<!-- card header  -->
+				<div class="card-header bg-white  py-4">
+					<h4 class="mb-0">Seznam kategorií</h4>
+				</div>
+				<!-- table  -->
+				<div class="table-responsive">
+					<table class="table text-nowrap mb-0">
+						<thead class="table-light">
+						<tr>
+							<th>Jméno kategorie</th>
+							<th>Produktů</th>
+						</tr>
+						</thead>
+						<tbody>
+						<tr n:foreach="$categories as $category">
+							<td class="align-middle">
+								<div class="d-flex align-items-center">
+									<div class="ms-3 lh-1">
+										<h5 class="mb-1"> <a n:href="category, $category->getId()" class="text-inherit">{$category->getName()}</a></h5>
+									</div>
+								</div>
+							</td>
+							<td class="align-middle">{$category->getProductsCount()}</td>
+						</tr>
+
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+{/block}
+
+{block listProducts}
+	<!-- row  -->
+	<div class="row mt-6">
+		<div class="col-md-12 col-12">
+			<!-- card  -->
+			<div class="card">
+				<!-- card header  -->
+				<div class="card-header bg-white  py-4">
+					<h4 class="mb-0">Seznam produktů</h4>
+				</div>
+				<!-- table  -->
+				<div class="table-responsive">
+					<table class="table text-nowrap mb-0">
+						<thead class="table-light">
+						<tr>
+							<th>Jméno produktu</th>
+							<th>EAN</th>
+							<th>HSCode</th>
+							<th>SKU</th>
+							<th>Cena</th>
+							<th>Skladem</th>
+							<th>Obrázků</th>
+						</tr>
+						</thead>
+						<tbody>
+							<tr n:foreach="$products as $product">
+								<td class="align-middle">
+									<div class="d-flex
+									align-items-center">
+										<div>
+											<div class="icon-shape icon-md border p-4
+										rounded-1">
+												<a n:href="product, $product->getId()"><img n:if="$product->getImages()->first()" src="{$basePath}/uploads/{$product->getImages()->first()->getUuid()}" alt="" class="avatar avatar-lg"></a>
+											</div>
+										</div>
+										<div class="ms-3 lh-1">
+											<h5 class=" mb-1"> <a n:href="product, $product->getId()" class="text-inherit">{$product->getName()}</a></h5>
+										</div>
+									</div>
+								</td>
+								<td class="align-middle">{$product->getEAN()}</td>
+								<td class="align-middle">{$product->getHSCode()}</td>
+								<td class="align-middle">
+									{$product->getSKU()}
+								</td>
+								<td class="align-middle text-dark">
+									{$product->getPrice()|number,2,',',' '} Kč
+								</td>
+								<td class="align-middle">
+									{$product->getStock()->getQuantity()} ks
+								</td>
+								<td class="align-middle">
+									{count($product->getImages())}
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+{/block}

@@ -44,9 +44,10 @@ final class AdminPresenter extends BasePresenter
 	public function actionDashboard()
 	{
 		$this->template->products = $this->productService->listProducts();
+		$this->template->categories = $this->productService->getCategories();
 	}
 
-	public function actionProduct(int $id = null)
+	public function actionProduct(?int $id = null)
 	{
 		if ($id !== null) {
 			$product = $this->productService->getProduct($id);
@@ -60,9 +61,31 @@ final class AdminPresenter extends BasePresenter
 				'category' => $product->getCategory()->getId(),
 				'price' => $product->getPrice(),
 				'vatType' => $product->getVatType()->value,
+				'url' => $product->getUrl(),
+				'visible' => $product->isVisible(),
+				'shortDescription' => $product->getShortDescription(),
+				'description' => $product->getDescription(),
 			]);
 
 			$this->template->product = $product;
+		} else {
+			$this->getComponent('productForm')['url']->setDisabled(true);
+		}
+	}
+
+	public function actionCategory(?int $id = null)
+	{
+		if ($id !== null) {
+			$category = $this->productService->getCategory($id);
+			if ($category === null)
+				$this->error();
+
+
+			$this->getComponent('categoryForm')->setDefaults([
+				'name' => $category->getName(),
+			]);
+
+			$this->template->category = $category;
 		}
 	}
 
@@ -101,6 +124,10 @@ final class AdminPresenter extends BasePresenter
 		$form->addSelect('vatType', 'DPH', VatType::items());
 		$form->addSelect('category', 'Kategorie', $this->productService->getCategoryItems());
 		$form->addMultiUpload('images', 'Obrázky');
+		$form->addCheckbox('visible', 'Produkt je viditelný');
+		$form->addText('url', 'Nice URL');
+		$form->addTextArea('shortDescription', 'Krátký popisek');
+		$form->addTextArea('description', 'Popis produktu');
 		$form->addSubmit('send', 'Uložit');
 		$form->onSuccess[] = [$this, 'productFormSuccess'];
 
@@ -122,7 +149,7 @@ final class AdminPresenter extends BasePresenter
 
 		$this->productService->addImages($product, $values->images);
 
-		$this->redirect('this');
+		$this->redirect('dashboard');
 	}
 
 	public function createComponentCategoryForm(): Form
@@ -138,9 +165,16 @@ final class AdminPresenter extends BasePresenter
 	public function categoryFormSuccess(Form $form)
 	{
 		$values = $form->getValues();
-		$category = $this->productService->createCategory($values->name);
-		$this->flashMessage('Kategorie ID: ' . $category->getId() . ' - ' . $category->getName() . ' byla vytvořena', 'success');
-		$this->redirect('this');
+		$id = (int) $this->getParameter('id');
+		if (empty($id)) {
+			$category = $this->productService->createCategory($values->name);
+			$this->flashMessage('Kategorie ID: ' . $category->getId() . ' - ' . $category->getName() . ' byla úspěšně vytvořena.');
+		} else {
+			$category = $this->productService->updateCategory($id, $values->name);
+			$this->flashMessage('Kategorie ID: ' . $category->getId() . ' - ' . $category->getName() . ' byla úspěšně upravena.');
+		}
+
+		$this->redirect('dashboard');
 	}
 
 }

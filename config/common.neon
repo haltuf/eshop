@@ -41,6 +41,7 @@ extensions:
 nettrine.orm.xml:
   mapping: [
     Eshop\Model\ORM\Entity: %appDir%/Model/ORM/Entity/xml
+    Eshop\Model\ORM\Embeddable: %appDir%/Model/ORM/Embeddable/xml
   ]
   fileExtension: .dcm.xml
   simple: false

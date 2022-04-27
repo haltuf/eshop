@@ -16,9 +16,10 @@ final class RouterFactory
 	{
 		$router = new RouteList;
 		$router->addRoute('admin/<action>[/<id>]', 'Admin:dashboard');
-		$router->addRoute('produkty', 'Homepage:list');
+		$router->addRoute('eshop', 'Homepage:list');
 		$router->addRoute('kosik', 'Homepage:basket');
 		$router->addRoute('objednavka', 'Homepage:order');
+		$router->addRoute('obsah/<id>', 'Homepage:content');
 		$router->addRoute('<url>', 'Homepage:detail');
 		$router->addRoute('', 'Homepage:default');
 		return $router;

@@ -54,12 +54,7 @@
 									<div class="h3 fw-normal text-accent mb-3 me-1">{$product|displayPrice}</div>
 									<div class="product-badge product-available mt-n1" n:if="$product->isInStock()"><i class="ci-security-check"></i>Máme skladem ({$product->getStock()->getQuantity()} ks)</div>
 								</div>
-								{form addProduct}
-								<div class="d-flex align-items-center pt-2 pb-4">
-									{input quantity, class => "form-select me-3", style => "width: 5rem;"}
-									<button n:name="send" type="submit" class="btn btn-primary btn-shadow d-block w-100"><i class="ci-cart fs-lg me-2"></i>Přidat do košíku</button>
-								</div>
-								{/form}
+								{control addBasket}
 								{*<div class="d-flex mb-4">
 									<div class="w-100 me-3">
 										<button class="btn btn-secondary d-block w-100" type="button"><i class="ci-heart fs-lg me-2"></i><span class='d-none d-sm-inline'>Add to </span>Wishlist</button>

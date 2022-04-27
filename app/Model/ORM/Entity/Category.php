@@ -14,9 +14,12 @@ class Category extends AbstractEntity
 
 	private array|Collection $children;
 
+	private Collection $products;
+
 	public function __construct(string $name, ?Category $parent = null)
 	{
 		$this->children = new ArrayCollection();
+		$this->products = new ArrayCollection();
 		$this->setName($name);
 		$this->setParent($parent);
 	}
@@ -68,5 +71,10 @@ class Category extends AbstractEntity
 			$this->getChildren()->removeElement($category);
 			//$category->setParent(null);
 		}
+	}
+
+	public function getProductsCount(): int
+	{
+		return $this->products->count();
 	}
 }

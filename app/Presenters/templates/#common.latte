@@ -125,7 +125,7 @@
 				<div style="max-height: 15rem;" data-simplebar data-simplebar-auto-hide="false">
 					{foreach $basket->getItems() as $item}
 						<div n:class="widget-cart-item, $iterator->isFirst() ? pb-2 : py-2, border-bottom">
-							<button class="btn-close text-danger" type="button" aria-label="Remove"><span aria-hidden="true">&times;</span></button>
+							<a n:href="removeBasket!, $item->getProduct()->getId()" class="btn-close text-danger" aria-label="Remove"><span aria-hidden="true">&times;</span></a>
 							<div class="d-flex align-items-center">
 								<a class="flex-shrink-0" n:href="detail, $item->getProduct()->getUrl()">
 									<img src="{$basePath}/uploads/{$item->getProduct()->getMainImageUrl()}" width="64" alt="{$item->getProduct()->getName()}">
@@ -228,9 +228,9 @@
 
 	<!-- Primary menu-->
 	<ul class="navbar-nav">
-		<li n:class="nav-item"><a class="nav-link" n:href="list">Hlavní stránka</a></li>
+		{*<li n:class="nav-item"><a class="nav-link" n:href="list">Hlavní stránka</a></li>*}
 		<li n:class="nav-item, in_array($presenter->action, ['detail', 'list']) ? active"><a class="nav-link" n:href="list">E-shop</a></li>
 		<li n:class="nav-item, $presenter->action === 'basket' ? active"><a class="nav-link" n:href="basket">Košík</a></li>
-		<li n:class="nav-item"><a class="nav-link" n:href="list">Kontakty</a></li>
+		<li n:class="nav-item, $presenter->action === 'content' && $presenter->getParameter('id') === 'kontakty' ? active"><a class="nav-link" n:href="content, kontakty">Kontakty</a></li>
 	</ul>
 {/block}

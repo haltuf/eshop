@@ -1,0 +1,6 @@
+{form form}
+	<button n:name="send" type="submit" class="btn btn-{if $isAllowed}primary{else}secondary{/if} btn-sm d-block w-100 mb-2">
+		<i class="ci-cart fs-lg me-2"></i>
+		{if $isAllowed}Přidat do košíku{else}Nelze přidat do košíku{/if}
+	</button>
+{/form}

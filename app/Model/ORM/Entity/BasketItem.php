@@ -7,7 +7,7 @@ use DateTime;
 class BasketItem extends AbstractEntity
 {
 
-	private readonly Basket $basket;
+	private ?Basket $basket = null;
 
 	private readonly Product $product;
 
@@ -63,4 +63,8 @@ class BasketItem extends AbstractEntity
 		return $this->createdAt;
 	}
 
+	public function delete(): void
+	{
+		$this->basket = null;
+	}
 }

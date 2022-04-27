@@ -30,37 +30,20 @@
 
 						{form productForm}
 
-							<div class="mb-6">
-								<h4 class="mb-1">Obrázky a přílohy</h4>
-							</div>
-
-							<div class="mb-3 row">
-								{label images, class => "col-sm-4 col-form-label form-label"/}
-								<div class="col-md-8 col-12">
-									{input images}
-								</div>
-							</div>
-
-							<div class="mb-3 row" n:if="isset($product) && $product->getImages()->count() > 0">
-								<div class="col-md-12">
-									<div class="d-flex align-items-center">
-										<div class="me-3" n:foreach="$product->getImages() as $image">
-											<img src="{$basePath}/uploads/{$image->getUuid()}" class="rounded-circle avatar avatar-lg" alt=""/>
-										</div>
-									</div>
-								</div>
-							</div>
-
-
 							<div class=" mb-6">
 								<h4 class="mb-1">Nastavení produktu</h4>
-
 							</div>
 
 							<div class="mb-3 row">
 								{label name, class => "col-sm-4 col-form-label form-label"/}
 								<div class="col-md-8 col-12">
 									{input name, class => "form-control"}
+								</div>
+							</div>
+							<div class="mb-3 row">
+								{label url, class => "col-sm-4 col-form-label form-label"/}
+								<div class="col-md-8 col-12">
+									{input url, class => "form-control"}
 								</div>
 							</div>
 							<div class="mb-3 row">
@@ -90,6 +73,55 @@
 									{input vatType, class => "form-select"}
 								</div>
 							</div>
+							<div class="mb-3 row">
+								<div class="col-md-4 col-12">
+
+								</div>
+								<div class="col-md-8 col-12">
+									<div class="form-check  mb-2">
+										{input visible:, class => "form-check-input"}
+										{label visible:, class => "form-check-label"/}
+									</div>
+								</div>
+							</div>
+
+							<div class=" mb-6">
+								<h4 class="mb-1">Popis</h4>
+							</div>
+							<div class="mb-3 row">
+								{label shortDescription, class => "col-sm-12 col-form-label form-label"/}
+								<div class="col-md-12 col-12">
+									{input shortDescription, class => "form-control"}
+								</div>
+							</div>
+							<div class="mb-3 row">
+								{label description, class => "col-sm-12 col-form-label form-label"/}
+								<div class="col-md-12 col-12">
+									{input description, class => "form-control", rows => 7}
+								</div>
+							</div>
+
+							<div class="mb-6">
+								<h4 class="mb-1">Obrázky a přílohy</h4>
+							</div>
+
+							<div class="mb-3 row">
+								{label images, class => "col-sm-4 col-form-label form-label"/}
+								<div class="col-md-8 col-12">
+									{input images}
+								</div>
+							</div>
+
+							<div class="mb-3 row" n:if="isset($product) && $product->getImages()->count() > 0">
+								<div class="col-md-12">
+									<div class="d-flex align-items-center">
+										<div class="me-3" n:foreach="$product->getImages() as $image">
+											<img src="{$basePath}/uploads/{$image->getUuid()}" class="rounded-circle avatar avatar-lg" alt=""/>
+										</div>
+									</div>
+								</div>
+							</div>
+
 							{*<!-- row -->
 							<div class="mb-3 row">
 								<label for="phone" class="col-sm-4 col-form-label

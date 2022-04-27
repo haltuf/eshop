@@ -10,6 +10,7 @@ use Eshop\Model\ORM\Entity\ProductImage;
 use Eshop\Model\ORM\Lists\VatType;
 use Nette\Http\FileUpload;
 use Nette\Utils\ArrayHash;
+use Nette\Utils\Strings;
 
 class ProductService extends AbstractService
 {
@@ -43,6 +44,11 @@ class ProductService extends AbstractService
 		return $this->em->getRepository(Product::class)->find($id);
 	}
 
+	public function getProductByUrl(string $url): ?Product
+	{
+		return $this->em->getRepository(Product::class)->findOneBy(['url' => $url]);
+	}
+
 	public function saveProduct(\Traversable|array|\stdClass $values, Product|int|null $product = null): Product
 	{
 		$values = (array) $values;
@@ -55,7 +61,7 @@ class ProductService extends AbstractService
 			$product = new Product($category);
 		}
 
-		foreach (['name', 'EAN', 'HSCode'] as $var) {
+		foreach (['name', 'EAN', 'HSCode', 'visible', 'description', 'shortDescription'] as $var) {
 			if (isset($values[$var]))
 				$product->{'set' . ucfirst($var)}($values[$var]);
 		}
@@ -71,6 +77,18 @@ class ProductService extends AbstractService
 			$product->setCategory($category);
 		}
 
+		$originalUrl = (isset($values['url']) && $values['url'] !== '') ? $values['url'] : Strings::webalize($values['name']);
+		$url = $originalUrl;
+		$productExists = $this->getProductByUrl($url);
+		$i = 1;
+		while ($productExists instanceof Product && $productExists->getId() !== $product->getId()) {
+			$i++;
+			$url = $originalUrl . (string) $i;
+			$productExists = $this->getProductByUrl($url);
+		}
+
+		$product->setUrl($url);
+
 		$this->em->persist($product);
 		$this->em->flush();
 
@@ -82,7 +100,10 @@ class ProductService extends AbstractService
 	 */
 	public function listProducts(): array|Collection
 	{
-		return $this->em->getRepository(Product::class)->findAll();
+		return $this->em->createQueryBuilder()->select('p')
+			->from(Product::class, 'p', 'p.id')
+			->getQuery()
+			->getResult();
 	}
 
 	/**
@@ -90,7 +111,6 @@ class ProductService extends AbstractService
 	 */
 	public function getCategories(): array
 	{
-		/** @var EntityRepository */
 		return $this->em->getRepository(Category::class)->findAll();
 	}
 

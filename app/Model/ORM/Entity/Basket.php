@@ -4,6 +4,7 @@ namespace Eshop\Model\ORM\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Eshop\Model\ORM\Embeddable\Address;
 use Eshop\Model\ORM\Exception\ProductNotAvailable;
 use Eshop\Model\ORM\Traits\TOrderInfo;
 use Ramsey\Uuid\Uuid;
@@ -26,6 +27,8 @@ class Basket extends AbstractEntity
 		$this->uniqueId = Uuid::uuid4()->getHex()->toString();
 		$this->createdAt = new \DateTime();
 		$this->items = new ArrayCollection();
+		$this->deliveryAddress = new Address();
+		$this->invoiceAddress = new Address();
 	}
 
 	public function getVisitorId(): string
@@ -70,11 +73,23 @@ class Basket extends AbstractEntity
 			$this->getItems()[$key]->setQuantity($this->getItems()[$key]->getQuantity() + $quantity);
 	}
 
-	public function removeProduct(Product $product): void
+	public function removeProduct(Product $product, int $quantity = 0): void
 	{
 		$key = $product->getId();
-		if (array_key_exists($key, $this->getItems()))
+		if (!array_key_exists($key, $this->getItems()))
+			return ;
+
+		$currentQuantity = $this->getItems()[$key]->getQuantity();
+		if ($quantity === 0 || $quantity === $currentQuantity) {
+			$removedItem = $this->getItems()[$key];
 			unset($this->items[$key]);
+			$removedItem->delete();
+			return ;
+		}
+
+		if ($quantity < $currentQuantity) {
+			$this->getItems()[$key]->setQuantity($currentQuantity - $quantity);
+		}
 	}
 
 	public function getTotal(): float

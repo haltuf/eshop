@@ -20,9 +20,8 @@
 			<div class="d-flex justify-content-between align-items-center pt-3 pb-4 pb-sm-5 mt-1">
 				<h2 class="h6 text-light mb-0">Zboží v košíku</h2><a class="btn btn-outline-primary btn-sm ps-2" n:href="list"><i class="ci-arrow-left me-2"></i>Pokračovat v nakupování</a>
 			</div>
-			{foreach $basket->getItems() as $item}
-			<!-- Item-->
-			<div class="d-sm-flex justify-content-between align-items-center my-2 pb-3 border-bottom">
+			{form updateBasket}
+			<div class="d-sm-flex justify-content-between align-items-center my-2 pb-3 border-bottom" n:foreach="$basket->getItems() as $item">
 				<div class="d-block d-sm-flex align-items-center text-center text-sm-start">
 					<a class="d-inline-block flex-shrink-0 mx-auto me-sm-4" n:href="detail, $item->getProduct()->getUrl()">
 						<img src="{$basePath}/uploads/{$item->getProduct()->getMainImageUrl()}" width="160" alt="Product">
@@ -35,13 +34,14 @@
 					</div>
 				</div>
 				<div class="pt-2 pt-sm-0 ps-sm-3 mx-auto mx-sm-0 text-center text-sm-start" style="max-width: 9rem;">
-					<label class="form-label" for="quantity1">Kusů</label>
-					<input class="form-control" type="number" id="quantity1" min="1" value="{$item->getQuantity()}">
-					<button class="btn btn-link px-0 text-danger" type="button"><i class="ci-close-circle me-2"></i><span class="fs-sm">Odstranit</span></button>
+					{label $form['quantity'][$item->getProduct()->getId()], class => "form-label"/}
+					{input $form['quantity'][$item->getProduct()->getId()], class => "form-control"}
+					<a n:href="removeBasket!, $item->getProduct()->getId()" class="btn btn-link px-0 text-danger" type="button"><i class="ci-close-circle me-2"></i><span class="fs-sm">Odstranit</span></a>
 				</div>
 			</div>
-			{/foreach}
-			<button class="btn btn-outline-accent d-block w-100 mt-4" type="button"><i class="ci-loading fs-base me-2"></i>Přepočítat košík</button>
+			<p n:if="empty($basket->getItems())">Váš košík je prázdný.</p>
+			<button n:name="recalculate" class="btn btn-outline-accent d-block w-100 mt-4" type="submit"><i class="ci-loading fs-base me-2"></i>Přepočítat košík</button>
+			{/form}
 		</section>
 		<!-- Sidebar-->
 		<aside class="col-lg-4 pt-4 pt-lg-0 ps-xl-5">

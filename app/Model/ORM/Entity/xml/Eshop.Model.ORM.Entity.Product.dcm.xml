@@ -8,6 +8,9 @@
         <id name="id" type="integer" column="id">
             <generator strategy="IDENTITY"/>
         </id>
+        <unique-constraints>
+            <unique-constraint columns="url" name="url_idx" />
+        </unique-constraints>
 
         <field name="HSCode" type="string" length="32" nullable="false">
             <options>
@@ -39,13 +42,27 @@
                 <option name="default">standard</option>
             </options>
         </field>
+        <field name="visible" type="boolean" nullable="false">
+            <options>
+                <option name="default">0</option>
+            </options>
+        </field>
+        <field name="url" type="string" nullable="false" length="255">
+            <options>
+                <option name="fixed"/>
+            </options>
+        </field>
+        <field name="shortDescription" type="text" length="65536" nullable="false">
+        </field>
+        <field name="description" type="text" length="4294967295">
+        </field>
         <one-to-one field="stockItem" target-entity="Eshop\Model\ORM\Entity\StockItem" mapped-by="product">
             <cascade>
                 <cascade-persist/>
                 <cascade-remove/>
             </cascade>
         </one-to-one>
-        <many-to-one field="category" target-entity="Eshop\Model\ORM\Entity\Category" />
+        <many-to-one field="category" target-entity="Eshop\Model\ORM\Entity\Category" inversed-by="products" />
 
         <one-to-many field="images" target-entity="Eshop\Model\ORM\Entity\ProductImage" mapped-by="product" orphan-removal="true">
             <cascade>

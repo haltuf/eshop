@@ -16,6 +16,7 @@
             </options>
         </field>
 
+        <one-to-many field="products" target-entity="Eshop\Model\ORM\Entity\Product" mapped-by="category" />
         <one-to-many field="children" target-entity="Eshop\Model\ORM\Entity\Category" mapped-by="parent" />
         <many-to-one field="parent" target-entity="Eshop\Model\ORM\Entity\Category" inversed-by="children" />
     </entity>
